@@ -1,8 +1,8 @@
 package com.mainserver.oskelly.repository;
 
-import com.mainserver.oskelly.entity.CommentEntity;
-import org.springframework.data.repository.CrudRepository;
+import com.mainserver.oskelly.entity.CommentsEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface CommentRepository extends CrudRepository<CommentEntity,Long> {
+public interface CommentRepository extends JpaRepository<CommentsEntity,Long> {
 
 }

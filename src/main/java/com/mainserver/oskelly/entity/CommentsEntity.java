@@ -5,15 +5,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "comment")
-public class CommentEntity {
+@Table(name = "comments")
+public class CommentsEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
@@ -22,5 +21,5 @@ public class CommentEntity {
     private String comment;
     @Column(name = "time")
     @Temporal(TemporalType.TIMESTAMP)
-    private LocalDateTime time;
+    private Date time;
 }

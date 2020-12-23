@@ -23,7 +23,7 @@ public class NotificationEntity {
     private long comment_id;
     @Column(name = "time")
     @Temporal(TemporalType.TIMESTAMP)
-    private LocalDateTime time;
+    private Date time;
     @Column(name = "delivered")
-    private boolean delivered;
+    private Boolean delivered;
 }
