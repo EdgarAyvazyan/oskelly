@@ -11,8 +11,8 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class NotificationDto {
-    private long id;
-    private long comment_id;
+    private Long id;
+    private Long comment_id;
     private LocalDateTime time;
     private boolean delivered;
 }

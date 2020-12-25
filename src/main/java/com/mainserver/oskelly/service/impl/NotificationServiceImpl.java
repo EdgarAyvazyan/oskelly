@@ -1,5 +1,6 @@
 package com.mainserver.oskelly.service.impl;
 
+import com.mainserver.oskelly.BusinessLogic;
 import com.mainserver.oskelly.dto.CommentsDto;
 import com.mainserver.oskelly.dto.NotificationDto;
 import com.mainserver.oskelly.entity.CommentsEntity;
@@ -29,7 +30,12 @@ public class NotificationServiceImpl implements NotificationService {
     @Override
     public NotificationDto createNotification(NotificationDto notification) {
         try {
-            repository.save(notificationDtoToEntity(notification));
+            final NotificationEntity notificationEntity = repository.save(notificationDtoToEntity(notification));
+            try {
+                BusinessLogic.doSomeWorkOnNotification();
+            } catch (RuntimeException e) {
+                notificationEntity.setDelivered(false);
+            }
         }catch (Exception e) {
             String error = "cannot crate a notification";
             log.error(error + ":" + e.getMessage());
@@ -71,7 +77,9 @@ public class NotificationServiceImpl implements NotificationService {
     private NotificationEntity notificationDtoToEntity(NotificationDto dto) {
         NotificationEntity entity = new NotificationEntity();
 
-        entity.setId(dto.getId());
+        if (dto.getId() != null) {
+            entity.setId(dto.getId());
+        }
         entity.setComment_id(dto.getComment_id());
         entity.setTime(Date.from(dto.getTime().atZone(ZoneId.systemDefault()).toInstant()));
         entity.setDelivered(dto.isDelivered());

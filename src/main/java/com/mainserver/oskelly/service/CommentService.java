@@ -8,4 +8,6 @@ public interface CommentService {
      CommentsDto createComment(CommentsDto comment);
 
      List<CommentsDto> getComments(int page);
+
+     CommentsDto findId(long id);
 }
